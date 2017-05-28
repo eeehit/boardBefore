@@ -5,7 +5,6 @@ import com.eeehit.board.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,26 +16,17 @@ import java.util.List;
  * Created by sppark on 2017-05-21.
  */
 @Controller
-@RequestMapping("article")
+@RequestMapping("/")
 @EnableAutoConfiguration
-public class ArticleController {
+public class MainController {
     @Autowired
     ArticleService articleService;
 
-    @RequestMapping(value = "id/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView getArticleById(@PathVariable(value = "id", required = true) long id) {
-        Article article = articleService.getArticleById(id);
-        ModelAndView mv = new ModelAndView("article");
-        mv.addObject("article", article);
-        return mv;
-    }
-
-    @RequestMapping(value = "list", method = RequestMethod.GET)
-    @ResponseBody
-    public ModelAndView getArticleList() {
+    public ModelAndView main() {
         List<Article> articleList = articleService.getArticleList();
-        ModelAndView mv = new ModelAndView("articleList");
+        ModelAndView mv = new ModelAndView("main");
         mv.addObject("articleList", articleList);
         return mv;
     }
