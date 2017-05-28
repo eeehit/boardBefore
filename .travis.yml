@@ -1,0 +1,20 @@
+language: java
+jdk:
+- oraclejdk8
+dist: trusty
+sudo: required
+addons:
+  apt:
+    packages:
+      - mysql-server-5.6
+before_script:
+  - mysql -e 'create database board;'
+  - mysql -e "grant all privileges on board.* to  board@'%' identified by 'board' with grant option;"
+notifications:
+  email:
+    recipients:
+      - eeehit.sytem@gmail.com
+      - eeehit@gmail.com
+    on_success: always
+    on_failure: always
+  email: true
