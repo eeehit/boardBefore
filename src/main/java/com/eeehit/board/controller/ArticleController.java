@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 /**
  * Created by sppark on 2017-05-21.
  */
@@ -26,9 +28,16 @@ public class ArticleController {
     public ModelAndView getArticleById(@PathVariable(value = "id", required = true) long id) {
         Article article = articleService.getArticleById(id);
         ModelAndView mv = new ModelAndView("article");
-        mv.addObject("id", article.getId());
-        mv.addObject("title", article.getTitle());
-        mv.addObject("content", article.getContent());
+        mv.addObject("article", article);
+        return mv;
+    }
+
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView getArticleList() {
+        List<Article> articleList = articleService.getArticleList();
+        ModelAndView mv = new ModelAndView("articleList");
+        mv.addObject("articleList", articleList);
         return mv;
     }
 }
