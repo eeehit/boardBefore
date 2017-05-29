@@ -24,11 +24,6 @@ public class UserController {
         return this.userService.getUserByUserId(userId);
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-    public Boolean login(@RequestParam(value = "userId", required = true) String userId, @RequestParam(value = "userPw", required = true) String userPw) {
-        return this.userService.login(userId, userPw);
-    }
-
     @RequestMapping(value = "join", method = RequestMethod.POST)
     public User join(@RequestParam(value = "userId", required = true) String userId, @RequestParam(value = "userPw", required = true) String userPw) {
         return this.userService.join(userId, userPw);

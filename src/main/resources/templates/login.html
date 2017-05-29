@@ -20,12 +20,12 @@
                 <div class="panel-title">환영합니다!</div>
             </div>
             <div class="panel-body">
-                <form id="login-form">
+                <form id="login-form" method="post" action="login/process">
                     <div>
-                        <input type="text" class="form-control" name="username" placeholder="Username" autofocus>
+                        <input type="text" class="form-control" name="userId" placeholder="Username" autofocus>
                     </div>
                     <div>
-                        <input type="password" class="form-control" name="password" placeholder="Password">
+                        <input type="password" class="form-control" name="userPw" placeholder="Password">
                     </div>
                     <div>
                         <button type="submit" class="form-control btn btn-primary">로그인</button>
