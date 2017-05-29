@@ -2,20 +2,22 @@
 <html>
 <head>
     <meta charset="utf-8"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.4/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/webjars/origoni-startbootstrap-clean-blog/1.0.3/css/clean-blog.min.css">
 </head>
 <body>
 <table>
     <thead>
-    <th>ID</th>
-    <th>TItle</th>
-    <th>Content</th>
+        <th>ID</th>
+        <th>TItle</th>
+        <th>Content</th>
     </thead>
     <tbody>
-    <tr>
-        <td>{{ id }}</td>
-        <td>{{ title }}</td>
-        <td>{{ content }}</td>
-    </tr>
+        <tr>
+            <td>{{article.id}}</td>
+            <td>{{article.title}}</td>
+            <td>{{article.content}}</td>
+        </tr>
     </tbody>
 </table>
 </body>
