@@ -1,5 +1,6 @@
 package com.eeehit.board.controller;
 
+import com.eeehit.board.domain.Role;
 import com.eeehit.board.domain.User;
 import com.eeehit.board.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by trinity on 17. 5. 18.
  */
 @RestController
-@RequestMapping("v1/user" )
+@RequestMapping("admin" )
 public class UserController {
     @Autowired
     private UserService userService;
@@ -26,6 +27,6 @@ public class UserController {
 
     @RequestMapping(value = "join", method = RequestMethod.POST)
     public User join(@RequestParam(value = "userId", required = true) String userId, @RequestParam(value = "userPw", required = true) String userPw) {
-        return this.userService.join(userId, userPw);
+        return this.userService.join(userId, userPw, Role.USER);
     }
 }

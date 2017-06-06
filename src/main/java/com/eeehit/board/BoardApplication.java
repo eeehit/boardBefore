@@ -1,6 +1,7 @@
 package com.eeehit.board;
 
 import com.eeehit.board.domain.Article;
+import com.eeehit.board.domain.Role;
 import com.eeehit.board.domain.User;
 import com.eeehit.board.repository.ArticleRepository;
 import com.eeehit.board.repository.UserRepository;
@@ -24,9 +25,9 @@ public class BoardApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-        userRepository.save(new User("Trinity", "hello"));
-        userRepository.save(new User("Hello", "hello"));
-        userRepository.save(new User("TEST", "hello"));
+        userRepository.save(new User("Trinity", "hello", Role.ADMIN));
+        userRepository.save(new User("Hello", "hello", Role.USER));
+        userRepository.save(new User("TEST", "hello", Role.USER));
         articleRepository.save(new Article("aaaa", "bbb"));
         articleRepository.save(new Article("222", "aaaaaaaaa"));
         articleRepository.save(new Article("harry potter", "good"));

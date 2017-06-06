@@ -1,7 +1,5 @@
 package com.eeehit.board.domain;
 
-import lombok.Getter;
-
 import javax.persistence.*;
 
 /**

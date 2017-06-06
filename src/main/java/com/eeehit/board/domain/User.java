@@ -1,7 +1,5 @@
 package com.eeehit.board.domain;
 
-import lombok.Getter;
-
 import javax.persistence.*;
 
 /**
@@ -14,29 +12,23 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(length = 255, nullable = false, unique = true)
+    @Column(length = 30, nullable = false, unique = true)
     private String userId;
 
-    @Column(length = 255, nullable = false)
+    @Column(length = 30, nullable = false)
     private String userPw;
 
-    public User() {
-        this.setUserId(null);
-        this.setUserPw(null);
-    }
+    @Column(length = 1, nullable = false)
+    private Role role;
 
-    public User(String userId, String userPw) {
+    public User() {}
+
+    public User(String userId, String userPw, Role role) {
         this.setUserId(userId);
         this.setUserPw(userPw);
+        this.setRole(role);
     }
 
-    private void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    private void setUserPw(String userPw) {
-        this.userPw = userPw;
-    }
 
     public long getId() {
         return id;
@@ -48,5 +40,22 @@ public class User {
 
     public String getUserPw() {
         return userPw;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+
+    private void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    private void setUserPw(String userPw) {
+        this.userPw = userPw;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
