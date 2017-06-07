@@ -31,13 +31,4 @@ public class ArticleController {
         mv.addObject("article", article);
         return mv;
     }
-
-    @RequestMapping(value = "list", method = RequestMethod.GET)
-    @ResponseBody
-    public ModelAndView getArticleList() {
-        List<Article> articleList = articleService.getArticleList();
-        ModelAndView mv = new ModelAndView("articleList");
-        mv.addObject("articleList", articleList);
-        return mv;
-    }
 }
