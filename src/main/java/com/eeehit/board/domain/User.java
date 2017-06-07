@@ -21,6 +21,7 @@ public class User {
     @Column(length = 1, nullable = false)
     private Role role;
 
+
     public User() {}
 
     public User(String userId, String userPw, Role role) {

@@ -18,6 +18,7 @@ public class Article {
     @Column(length = 255, nullable = false)
     private String content;
 
+
     public Article() {
         this.setTitle(null);
         this.setContent(null);
@@ -28,6 +29,7 @@ public class Article {
         this.setContent(content);
     }
 
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -35,6 +37,7 @@ public class Article {
     public void setContent(String content) {
         this.content = content;
     }
+
 
     public long getId() {
         return id;
