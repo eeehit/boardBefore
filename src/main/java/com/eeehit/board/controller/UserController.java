@@ -6,6 +6,8 @@ import com.eeehit.board.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by trinity on 17. 5. 18.
  */
@@ -15,9 +17,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "id/{id}", method = RequestMethod.GET)
-    public User getUserById(@PathVariable(value = "id", required = true) long id){
-        return this.userService.getUserById(id);
+    @RequestMapping(value = "userList", method = RequestMethod.GET)
+    public List<User> getUserList(){
+        return this.userService.getUserList();
     }
 
     @RequestMapping(value = "userId/{userId}", method = RequestMethod.GET)
