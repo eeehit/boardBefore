@@ -17,7 +17,6 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/")
-@EnableAutoConfiguration
 public class MainController {
     @Autowired
     ArticleService articleService;
