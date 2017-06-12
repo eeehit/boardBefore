@@ -25,7 +25,6 @@ public class MainController {
         List<Article> articleList = articleService.getArticleList();
         ModelAndView mv = new ModelAndView("main");
         mv.addObject("articleList", articleList);
-        mv.addObject("session", httpSession.getAttribute("userId"));
         return mv;
     }
 }
