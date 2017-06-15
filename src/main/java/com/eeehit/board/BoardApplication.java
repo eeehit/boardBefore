@@ -29,11 +29,11 @@ public class BoardApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-        userRepository.save(new User("Trinity", "hello", Role.ADMIN));
-        userRepository.save(new User("Hello", "hello", Role.USER));
-        userRepository.save(new User("TEST", "hello", Role.USER));
         articleRepository.save(new Article("aaaa", "bbb"));
         articleRepository.save(new Article("222", "aaaaaaaaa"));
         articleRepository.save(new Article("harry potter", "good"));
+	    userRepository.save(new User("Trinity", "hello", Role.ADMIN));
+        userRepository.save(new User("Hello", "hello", Role.USER));
+        userRepository.save(new User("TEST", "hello", Role.USER));
     }
 }

@@ -1,6 +1,8 @@
 package com.eeehit.board.controller;
 
+import com.eeehit.board.domain.User;
 import com.eeehit.board.service.UserService;
+import com.eeehit.board.session.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,9 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private SessionFactory sessionFactory;
+
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public ModelAndView LoginPage(){
         return new ModelAndView("login");
@@ -25,18 +30,17 @@ public class LoginController {
 
     @RequestMapping(value = "login/process", method = RequestMethod.POST)
     public ModelAndView login(
-            @RequestParam(value = "userId", required = true) String userId,
-            @RequestParam(value = "userPw", required = true) String userPw,
+            @RequestParam(value = "userId", required = true) String id,
+            @RequestParam(value = "userPw", required = true) String pw,
             HttpSession httpSession){
 
-        boolean login_success = this.userService.login(userId, userPw);
-
+        boolean login_success = this.userService.login(id, pw);
         if(login_success == true) {
-            httpSession.setAttribute("userId", userId);
+            User loginUser = this.userService.getUserById(id);
+            this.sessionFactory.makeSession(loginUser, httpSession);
             return new ModelAndView("redirect:/");
-        } else {
-            return new ModelAndView("redirect:/login");
         }
+        return new ModelAndView("redirect:/login");
     }
 
     @RequestMapping(value = "logout", method = RequestMethod.GET)

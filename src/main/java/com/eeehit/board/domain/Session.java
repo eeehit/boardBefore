@@ -7,9 +7,14 @@ public class Session{
 
     private User user;
 
+    private long loginTime;
 
-    public Session(User user) {
+
+    public Session(){}
+
+    public Session(User user, long loginTime) {
         this.user = user;
+        this.loginTime = loginTime;
     }
 
 
@@ -17,11 +22,16 @@ public class Session{
         return user;
     }
 
-    public Long getId() {
-        return user.getId();
+    public long getLoginTime() {
+        return loginTime;
     }
 
-    public Role getRole() {
-        return user.getRole();
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setLoginTime(long loginTime) {
+        this.loginTime = loginTime;
     }
 }

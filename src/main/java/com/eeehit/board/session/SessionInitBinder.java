@@ -17,6 +17,6 @@ public class SessionInitBinder {
 
     @ModelAttribute("session")
     public String getSessionId(HttpSession httpSession) {
-        return (String) httpSession.getAttribute("userId");
+        return (String) httpSession.getAttribute("id");
     }
 }

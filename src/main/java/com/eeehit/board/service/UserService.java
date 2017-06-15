@@ -21,19 +21,17 @@ public class UserService {
         return this.userRepository.findAll();
     }
 
-    public User getUserByUserId(String userId){
-        return this.userRepository.findByUserId(userId);
+    public User getUserById(String id){
+        return this.userRepository.findById(id);
     }
 
-    public Boolean login(String userId, String userPw) {
-        User user = this.userRepository.findByUserId(userId);
-        if ((user.getUserPw().equals(userPw))) {
-            return true;
-        }
+    public Boolean login(String id, String pw) {
+        User user = this.userRepository.findById(id);
+        if ((user.getPw().equals(pw))) return true;
         return false;
     }
 
-    public User join(String userId, String userPw, Role role) {
-        return this.userRepository.save(new User(userId, userPw, role));
+    public User join(String id, String pw, Role role) {
+        return this.userRepository.save(new User(id, pw, role));
     }
 }

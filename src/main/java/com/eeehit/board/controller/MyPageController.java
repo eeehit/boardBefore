@@ -2,6 +2,7 @@ package com.eeehit.board.controller;
 
 import com.eeehit.board.domain.User;
 import com.eeehit.board.service.UserService;
+import com.eeehit.board.session.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,17 +16,19 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 @RequestMapping("myPage")
-public class UserController {
+public class MyPageController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    SessionFactory sessionFactory;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView myPage(HttpSession httpSession){
         ModelAndView mv = new ModelAndView("myPage");
-        String userId = (String) httpSession.getAttribute("userId");
-        User user = userService.getUserByUserId(userId);
+        User user = sessionFactory.getSession(httpSession).getUser();
         mv.addObject("user", user);
         return mv;
     }
+
 }

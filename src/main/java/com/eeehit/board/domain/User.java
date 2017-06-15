@@ -8,15 +8,15 @@ import javax.persistence.*;
 @Entity
 public class User {
     @Id
-    @Column
+    @Column(name = "userKey")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long key;
 
     @Column(length = 30, nullable = false, unique = true)
-    private String userId;
+    private String id;
 
     @Column(length = 30, nullable = false)
-    private String userPw;
+    private String pw;
 
     @Column(length = 1, nullable = false)
     private Role role;
@@ -24,23 +24,28 @@ public class User {
 
     public User() {}
 
-    public User(String userId, String userPw, Role role) {
-        this.setUserId(userId);
-        this.setUserPw(userPw);
+    public User(long key, String id, String pw, Role role) {
+        this.setKey(key);
+        this.setId(id);
+        this.setPw(pw);
+        this.setRole(role);
+    }
+    public User(String id, String pw, Role role) {
+        this.setId(id);
+        this.setPw(pw);
         this.setRole(role);
     }
 
+    public long getKey() {
+        return key;
+    }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public String getUserPw() {
-        return userPw;
+    public String getPw() {
+        return pw;
     }
 
     public Role getRole() {
@@ -48,12 +53,17 @@ public class User {
     }
 
 
-    private void setUserId(String userId) {
-        this.userId = userId;
+
+    public void setKey(long key) {
+        this.key = key;
     }
 
-    private void setUserPw(String userPw) {
-        this.userPw = userPw;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setPw(String userPw) {
+        this.pw = userPw;
     }
 
     public void setRole(Role role) {
