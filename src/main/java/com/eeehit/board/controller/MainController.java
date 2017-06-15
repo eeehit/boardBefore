@@ -3,13 +3,12 @@ package com.eeehit.board.controller;
 import com.eeehit.board.domain.Article;
 import com.eeehit.board.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -22,8 +21,7 @@ public class MainController {
     ArticleService articleService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    @ResponseBody
-    public ModelAndView main() {
+    public ModelAndView main(HttpSession httpSession) {
         List<Article> articleList = articleService.getArticleList();
         ModelAndView mv = new ModelAndView("main");
         mv.addObject("articleList", articleList);
