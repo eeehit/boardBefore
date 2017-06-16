@@ -6,6 +6,9 @@ import com.eeehit.board.domain.User;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Created by trinity on 17. 6. 15.
@@ -14,21 +17,42 @@ import javax.servlet.http.HttpSession;
 public class SessionFactory {
     public void makeSession (User loginUser, HttpSession httpSession){
         Session session = new Session(loginUser, httpSession.getCreationTime());
-
-        httpSession.setAttribute("key", session.getUser().getKey());
         httpSession.setAttribute("id", session.getUser().getId());
-        httpSession.setAttribute("pw", session.getUser().getPw());
-        httpSession.setAttribute("role", session.getUser().getRole());
+        httpSession.setAttribute("roles", sessionRoles(session.getUser().getRoles()));
         httpSession.setAttribute("loginTime", session.getLoginTime());
     }
 
     public Session getSession (HttpSession httpSession){
-        long key = (long) httpSession.getAttribute("key");
         String id = (String) httpSession.getAttribute("id");
-        String pw = (String) httpSession.getAttribute("pw");
-        Role role = (Role) httpSession.getAttribute("role");
+        String roles = (String) httpSession.getAttribute("roles");
         long loginTime = httpSession.getCreationTime();
-        Session session = new Session(new User(key, id, pw, role), loginTime);
-        return session;
+        return new Session(new User(id, (HashSet) toHashSet(roles)), loginTime);
+    }
+
+    public String sessionRoles(Set<Role> roles) {
+        String delimiter = ",";
+        String roleString = "";
+
+        Iterator<Role> role = roles.iterator();
+        while(role.hasNext()) {
+            String roleName = role.next().getName();
+            if(roleName!=null) {
+                roleString += roleName;
+                roleString += delimiter;
+            }
+        }
+
+        return roleString;
+    }
+    public Set<Role> toHashSet(String sessionRoles) {
+        String delimiter = ",";
+        String[] roleNameList = sessionRoles.split(delimiter);
+        Set<Role> rolesList = new HashSet<>();
+        
+        for(int i=0 ; i<roleNameList.length ; i++) {
+            Role role = new Role(roleNameList[i]);
+            rolesList.add(role);
+        }
+        return rolesList;
     }
 }

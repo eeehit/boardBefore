@@ -1,6 +1,5 @@
 package com.eeehit.board.service;
 
-import com.eeehit.board.domain.Role;
 import com.eeehit.board.domain.User;
 import com.eeehit.board.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ public class UserService {
         return false;
     }
 
-    public User join(String id, String pw, Role role) {
-        return this.userRepository.save(new User(id, pw, role));
+    public User join(String id, String pw) {
+        return this.userRepository.save(new User(id, pw));
     }
 }

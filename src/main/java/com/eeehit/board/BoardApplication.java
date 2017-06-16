@@ -5,12 +5,16 @@ import com.eeehit.board.domain.Role;
 import com.eeehit.board.domain.User;
 import com.eeehit.board.repository.ArticleRepository;
 import com.eeehit.board.repository.UserRepository;
+import com.eeehit.board.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @SpringBootApplication
 @EnableAutoConfiguration
@@ -23,6 +27,9 @@ public class BoardApplication implements CommandLineRunner {
     @Autowired
     ArticleRepository articleRepository;
 
+    @Autowired
+    RoleService roleService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(BoardApplication.class, args);
 	}
@@ -32,8 +39,21 @@ public class BoardApplication implements CommandLineRunner {
         articleRepository.save(new Article("aaaa", "bbb"));
         articleRepository.save(new Article("222", "aaaaaaaaa"));
         articleRepository.save(new Article("harry potter", "good"));
-	    userRepository.save(new User("Trinity", "hello", Role.ADMIN));
-        userRepository.save(new User("Hello", "hello", Role.USER));
-        userRepository.save(new User("TEST", "hello", Role.USER));
+        roleService.addRole("ROLE_ADMIN");
+        roleService.addRole("ROLE_USER");
+
+        Set<Role> adminRole = new HashSet<>();
+        adminRole.add(new Role("ROLE_ADMIN"));
+        adminRole.add(new Role("ROLE_USER"));
+
+        Set<Role> userRole = new HashSet<>();
+        userRole.add(new Role("ROLE_USER"));
+
+        Set<Role> userRole2 = new HashSet<>();
+        userRole2.add(new Role("ROLE_USER"));
+
+	    userRepository.save(new User("Trinity", "hello", adminRole));
+        userRepository.save(new User("Hello", "hello", userRole));
+        userRepository.save(new User("TEST", "hello", userRole2));
     }
 }

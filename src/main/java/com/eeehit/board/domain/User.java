@@ -1,6 +1,7 @@
 package com.eeehit.board.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by trinity on 17. 5. 18.
@@ -18,55 +19,54 @@ public class User {
     @Column(length = 30, nullable = false)
     private String pw;
 
-    @Column(length = 1, nullable = false)
-    private Role role;
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinTable(joinColumns = @JoinColumn(name = "userKey"),inverseJoinColumns = @JoinColumn(name = "roleKey"))
+    private Set<Role> roles;
 
-
-    public User() {}
-
-    public User(long key, String id, String pw, Role role) {
-        this.setKey(key);
-        this.setId(id);
-        this.setPw(pw);
-        this.setRole(role);
-    }
-    public User(String id, String pw, Role role) {
-        this.setId(id);
-        this.setPw(pw);
-        this.setRole(role);
+    public User() {
     }
 
-    public long getKey() {
-        return key;
+    public User(String id) {
+        this.id = id;
+    }
+
+    public User(String id, String pw) {
+        this.id = id;
+        this.pw = pw;
+    }
+
+    public User(String id, Set<Role> roles) {
+        this.id = id;
+        this.roles = roles;
+    }
+
+    public User(String id, String pw, Set<Role> roles) {
+        this.id = id;
+        this.pw = pw;
+        this.roles = roles;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getPw() {
-        return pw;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-
-
-    public void setKey(long key) {
-        this.key = key;
-    }
-
     public void setId(String id) {
         this.id = id;
     }
 
-    public void setPw(String userPw) {
-        this.pw = userPw;
+    public String getPw() {
+        return pw;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setPw(String pw) {
+        this.pw = pw;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

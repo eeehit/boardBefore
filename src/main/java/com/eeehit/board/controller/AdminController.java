@@ -1,6 +1,5 @@
 package com.eeehit.board.controller;
 
-import com.eeehit.board.domain.Role;
 import com.eeehit.board.domain.User;
 import com.eeehit.board.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +30,6 @@ public class AdminController {
     public User join(
             @RequestParam(value = "userId", required = true) String id,
             @RequestParam(value = "userPw", required = true) String pw) {
-        return this.userService.join(id, pw, Role.USER);
+        return this.userService.join(id, pw);
     }
 }
