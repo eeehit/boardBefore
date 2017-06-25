@@ -1,6 +1,5 @@
-package com.eeehit.board.repository;
+package com.eeehit.board.article;
 
-import com.eeehit.board.domain.Article;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

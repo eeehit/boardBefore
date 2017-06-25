@@ -1,7 +1,5 @@
-package com.eeehit.board.service;
+package com.eeehit.board.article;
 
-import com.eeehit.board.domain.Article;
-import com.eeehit.board.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

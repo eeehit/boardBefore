@@ -1,4 +1,6 @@
-package com.eeehit.board.domain;
+package com.eeehit.board.user.session;
+
+import com.eeehit.board.user.user.User;
 
 /**
  * Created by trinity on 17. 6. 6.

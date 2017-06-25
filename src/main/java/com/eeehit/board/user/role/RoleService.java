@@ -1,7 +1,5 @@
-package com.eeehit.board.service;
+package com.eeehit.board.user.role;
 
-import com.eeehit.board.domain.Role;
-import com.eeehit.board.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

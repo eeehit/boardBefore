@@ -1,7 +1,7 @@
-package com.eeehit.board.controller;
+package com.eeehit.board.user;
 
-import com.eeehit.board.domain.User;
-import com.eeehit.board.service.UserService;
+import com.eeehit.board.user.user.User;
+import com.eeehit.board.user.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

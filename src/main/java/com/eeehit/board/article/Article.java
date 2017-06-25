@@ -1,4 +1,4 @@
-package com.eeehit.board.domain;
+package com.eeehit.board.article;
 
 import javax.persistence.*;
 

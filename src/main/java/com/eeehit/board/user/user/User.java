@@ -1,4 +1,6 @@
-package com.eeehit.board.domain;
+package com.eeehit.board.user.user;
+
+import com.eeehit.board.user.role.Role;
 
 import javax.persistence.*;
 import java.util.Set;

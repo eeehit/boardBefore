@@ -1,7 +1,5 @@
-package com.eeehit.board.controller;
+package com.eeehit.board.article;
 
-import com.eeehit.board.domain.Article;
-import com.eeehit.board.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

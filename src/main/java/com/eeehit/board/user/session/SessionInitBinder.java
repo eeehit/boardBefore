@@ -1,4 +1,4 @@
-package com.eeehit.board.session;
+package com.eeehit.board.user.session;
 
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;

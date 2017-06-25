@@ -1,11 +1,11 @@
 package com.eeehit.board;
 
-import com.eeehit.board.domain.Article;
-import com.eeehit.board.domain.Role;
-import com.eeehit.board.domain.User;
-import com.eeehit.board.repository.ArticleRepository;
-import com.eeehit.board.repository.UserRepository;
-import com.eeehit.board.service.RoleService;
+import com.eeehit.board.article.Article;
+import com.eeehit.board.user.role.Role;
+import com.eeehit.board.user.user.User;
+import com.eeehit.board.article.ArticleRepository;
+import com.eeehit.board.user.user.UserRepository;
+import com.eeehit.board.user.role.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

@@ -1,8 +1,8 @@
-package com.eeehit.board.controller;
+package com.eeehit.board.user;
 
-import com.eeehit.board.domain.User;
-import com.eeehit.board.service.UserService;
-import com.eeehit.board.session.SessionFactory;
+import com.eeehit.board.user.session.SessionService;
+import com.eeehit.board.user.user.User;
+import com.eeehit.board.user.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,7 @@ public class LoginController {
     private UserService userService;
 
     @Autowired
-    private SessionFactory sessionFactory;
+    private SessionService sessionService;
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public ModelAndView LoginPage(){
@@ -37,7 +37,7 @@ public class LoginController {
         boolean login_success = this.userService.login(id, pw);
         if(login_success == true) {
             User loginUser = this.userService.getUserById(id);
-            this.sessionFactory.makeSession(loginUser, httpSession);
+            this.sessionService.makeSession(loginUser, httpSession);
             return new ModelAndView("redirect:/");
         }
         return new ModelAndView("redirect:/login");

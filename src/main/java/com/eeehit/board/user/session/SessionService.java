@@ -1,8 +1,7 @@
-package com.eeehit.board.session;
+package com.eeehit.board.user.session;
 
-import com.eeehit.board.domain.Role;
-import com.eeehit.board.domain.Session;
-import com.eeehit.board.domain.User;
+import com.eeehit.board.user.role.Role;
+import com.eeehit.board.user.user.User;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -14,7 +13,7 @@ import java.util.Set;
  * Created by trinity on 17. 6. 15.
  */
 @Service
-public class SessionFactory {
+public class SessionService {
     public void makeSession (User loginUser, HttpSession httpSession){
         Session session = new Session(loginUser, httpSession.getCreationTime());
         httpSession.setAttribute("id", session.getUser().getId());
@@ -44,7 +43,7 @@ public class SessionFactory {
 
         return roleString;
     }
-    public Set<Role> toHashSet(String sessionRoles) {
+    private Set<Role> toHashSet(String sessionRoles) {
         String delimiter = ",";
         String[] roleNameList = sessionRoles.split(delimiter);
         Set<Role> rolesList = new HashSet<>();

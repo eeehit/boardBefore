@@ -1,6 +1,5 @@
-package com.eeehit.board.repository;
+package com.eeehit.board.user.role;
 
-import com.eeehit.board.domain.Role;
 import org.springframework.data.repository.CrudRepository;
 
 /**

@@ -1,10 +1,10 @@
-package com.eeehit.board.controller;
+package com.eeehit.board.user;
 
-import com.eeehit.board.domain.Role;
-import com.eeehit.board.domain.User;
-import com.eeehit.board.service.RoleService;
-import com.eeehit.board.service.UserService;
-import com.eeehit.board.session.SessionFactory;
+import com.eeehit.board.user.role.Role;
+import com.eeehit.board.user.role.RoleService;
+import com.eeehit.board.user.session.SessionService;
+import com.eeehit.board.user.user.User;
+import com.eeehit.board.user.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +24,7 @@ public class MyPageController {
     UserService userService;
 
     @Autowired
-    SessionFactory sessionFactory;
+    SessionService sessionService;
 
     @Autowired
     RoleService roleService;
@@ -32,9 +32,9 @@ public class MyPageController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView myPage(HttpSession httpSession){
         ModelAndView mv = new ModelAndView("myPage");
-        User user = sessionFactory.getSession(httpSession).getUser();
-        Set<Role> roles = sessionFactory.getSession(httpSession).getUser().getRoles();
-        String rolesString = sessionFactory.sessionRoles(roles);
+        User user = sessionService.getSession(httpSession).getUser();
+        Set<Role> roles = sessionService.getSession(httpSession).getUser().getRoles();
+        String rolesString = sessionService.sessionRoles(roles);
         mv.addObject("user", user);
         mv.addObject("roles", rolesString);
         return mv;
